@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+                                    <!--核心配置文件-->
+<configuration>
+<!--
+    environments作用：配置多个连接数据库的环境，
+        属性：
+            default：默认使用的环境，里面放的是environment的id，当default的值等于某个environment的id值的时候就默认使用该环境。
+-->
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+    </plugins>
+
+    <environments default="development">
+<!--        environment：配置某一具体环境-->
+        <environment id="development">
+<!--            id：连接数据库环境的唯一标识-->
+            <transactionManager type="JDBC" />
+<!--          transactionManager设置事务管理方式
+                属性：
+                    type：JDBC/MANAGED
+                    JDBC：在当前环境中，执行SQL时，使用的时JDBC的原生的事务管理方式，提交或回滚需要手动处理
+                    MANAGED：被管理，例如spring
+  -->
+            <dataSource type="POOLED">
+<!--
+        dataSource；配置数据源
+            属性：
+                type：设置数据源的类型
+                type=”POOLED/UNPOOLED/JNDI“
+                POOLED：表示使用数据库连接池缓存数据库连接
+                UNPOOLED：表示不使用数据库连接池
+                JNDI：表示使用上下文的数据源
+-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/newsmanagersystem?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=Asia/Shanghai"/>
+                <property name="username" value="root" />
+                <property name="password" value="root" />
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <!--  引入映射文件      -->
+        <mapper resource="mappers/NewsMapper.xml"/>
+        <mapper resource="mappers/CommentMapper.xml"/>
+<!--
+    以包为单位引入映射文件
+    要求：
+    1.mapper接口所在的包要与映射文件所在的包的位置一致
+    2.mapper接口要与映射文件的名字一致
+    <package name=""/>
+-->
+
+    </mappers>
+</configuration>
