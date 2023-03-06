@@ -27,7 +27,7 @@ public class MyBatis {
         //news.setTitle("Mybatis配置文件添加测试");
 
         NewsMapper newsMapper=sqlSession.getMapper(NewsMapper.class);
-        newsMapper.insertNews(news);
+//        newsMapper.insertNews(news);
 //        System.out.println("nid:"+news.getNid()'?');
         sqlSession.commit();
         sqlSession.close();
@@ -42,9 +42,9 @@ public class MyBatis {
         SqlSession sqlSession=sqlSessionFactory.openSession();
 
         NewsMapper newsMapper=sqlSession.getMapper(NewsMapper.class);
-        News news=newsMapper.selectDetail(231);
+//        News news=newsMapper.selectDetail(231);
         sqlSession.close();
-        System.out.println(news);
+//        System.out.println(news);
     }
     @Test
     public void testSelectByCondition() throws IOException {
@@ -58,9 +58,9 @@ public class MyBatis {
         News news=new News();
         //news.setNtid(1);
         //news.setTitle("%韩国%");
-        List<News> newList=newsMapper.selectByCondition(news);
+//        List<News> newList=newsMapper.selectByCondition(news);
         sqlSession.close();
-        System.out.println(newList);
+//        System.out.println(newList);
         //System.out.println("newsList size:"+newsList.size());
     }
 
@@ -75,10 +75,10 @@ public class MyBatis {
         NewsMapper newsMapper=sqlSession.getMapper(NewsMapper.class);
         News news=new News();
         //news.setNtid(1);
-        news.setNtitle("Mybatis插入新闻测试");
-        Integer res=newsMapper.insertNews(news);
-        System.out.println("当前影响的记录条数为："+res);
-        System.out.println("当前插入成功的新闻id为："+news.getNid());
+//        news.setNtitle("Mybatis插入新闻测试");
+//        Integer res=newsMapper.insertNews(news);
+//        System.out.println("当前影响的记录条数为："+res);
+//        System.out.println("当前插入成功的新闻id为："+news.getNid());
         sqlSession.commit();//手动提交事务
         sqlSession.close();
     }
@@ -92,8 +92,8 @@ public class MyBatis {
         SqlSession sqlSession=sqlSessionFactory.openSession();
 
         NewsMapper newsMapper=sqlSession.getMapper(NewsMapper.class);
-        int ids[]={259,260,261};
-        newsMapper.deleteByIds(ids);
+//        int ids[]={259,260,261};
+//        newsMapper.deleteByIds(ids);
         sqlSession.commit();//手动提交事务
         sqlSession.close();
     }
